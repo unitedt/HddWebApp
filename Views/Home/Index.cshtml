@@ -1,0 +1,51 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Каталог жёстких дисков";
+}
+<h3>Каталог накопителей на жёстких дисках (HDD)</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Производитель</th>
+            <th>Модель</th>
+            <th>Объём</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hdd in Model.Hdds)
+        {
+            <tr>
+                <td>@hdd.Company</td>
+                <td>@hdd.Name</td>
+                <td>@(Math.Round(hdd.Capacity / (decimal) Math.Pow(2, 40), 2)) TiB</td>
+                <td><a href="~/Home/Install/@hdd.Id" target="_blank">Установить</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+ 
+<h3>Установленные диски</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Компьютер</th>
+            <th>Производитель</th>
+            <th>Модель</th>
+            <th>Объём</th>
+            <th>Используемый объём</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var disk in Model.Disks)
+        {
+            <tr>
+                <td>@disk.ComputerName</td>
+                <td>@disk.Hdd.Company</td>
+                <td>@disk.Hdd.Name</td>
+                <td>@(Math.Round(disk.Hdd.Capacity / (decimal) Math.Pow(2, 40), 2)) TiB</td>
+                <td>@(Math.Round(disk.UsedBytes / (decimal) Math.Pow(2, 40), 2)) TiB</td>
+            </tr>
+        }
+    </tbody>
+</table>

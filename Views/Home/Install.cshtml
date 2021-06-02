@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Установка диска на компьютер</title>
+</head>
+<body>
+    <div>
+        <h3>Установка нового диска</h3>
+        <p>Для того, чтобы записать данные об установке диска заполните следующие поля:</p>
+        <form method="post">
+            <input type="hidden" value="@ViewBag.HddId" name="HddId" />
+            <table>
+                <tr>
+                    <td>Название компьютера:</td>
+                    <td><input type="text" name="ComputerName" /> </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
